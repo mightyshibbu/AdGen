@@ -1,0 +1,28 @@
+def predict_tags(new_user_data):
+    print("Inside predict tags!")
+    # Preprocess new user data
+    categorical_columns = ['Gender', 'Payment Information', 'Usage Frequency', 'Purchase History', 'Favorite Genres', 'Devices Used', 'Engagement Metrics']
+    numerical_columns = ['Age Group']  # Adjust this if you have numerical features
+    #{ new user data
+    #     "dob": "2001-05-31", 
+    #     "gender": "Male", 
+    #     "location": "Pune", 
+    #     "payment_info": "VISA", 
+    #     "usage_frequency": "Occasional", 
+    #     "purchase_history": "Books", 
+    #     "favorite_genre": "Comedy", 
+    #     "device_used": "Tablet", 
+    #     "engagement_metrics": "Medium"
+    # }
+    # Ensure the new user data is in the correct format
+    encoded_new_data = preprocessor.transform(new_user_data[categorical_columns])
+    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    new_numerical_data = new_user_data[numerical_columns].to_numpy()
+    new_features = np.hstack((encoded_new_data, new_numerical_data))
+    print("new_features ",new_features)
+    # Make predictions
+    predictions = model.predict(new_features)
+
+    # Decode the predicted tags
+    predicted_tags = mlb.inverse_transform(predictions)
+    return predicted_tags

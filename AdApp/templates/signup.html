@@ -1,0 +1,136 @@
+<!-- myapp/templates/signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Signup</title>
+    <style>
+        /* Inline CSS for styling the form */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+
+        form input:focus, form select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .submit-btn:active {
+            background-color: #3c8d3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>User Signup</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_dob">Date of Birth</label>
+                {{ form.dob }}  <!-- This will render a date picker in compatible browsers -->
+            </div>
+            <div class="form-group">
+                <label for="id_gender">Gender</label>
+                {{ form.gender }}
+            </div>
+            <div class="form-group">
+                <label for="id_location">Location</label>
+                {{ form.location }}
+            </div>
+            <div class="form-group">
+                <label for="id_payment_info">Payment Info</label>
+                {{ form.payment_info }}
+            </div>
+            <div class="form-group">
+                <label for="id_usage_frequency">Usage Frequency</label>
+                {{ form.usage_frequency }}
+            </div>
+            <div class="form-group">
+                <label for="id_purchase_history">Purchase History</label>
+                {{ form.purchase_history }}
+            </div>
+            <div class="form-group">
+                <label for="id_favorite_genre">Favorite Genre</label>
+                {{ form.favorite_genre }}
+            </div>
+            <div class="form-group">
+                <label for="id_device_used">Device Used</label>
+                {{ form.device_used }}
+            </div>
+            <div class="form-group">
+                <label for="id_engagement_metrics">Engagement Metrics</label>
+                {{ form.engagement_metrics }}
+            </div>
+            <button type="submit" class="submit-btn">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>
