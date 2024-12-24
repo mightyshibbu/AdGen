@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:rgb(56, 56, 56);
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .user-info, .predicted-tags, .ads {
+            flex: 1;
+            margin: 0 10px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color:rgb(151, 151, 151);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .user-info p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .predicted-tags ul {
+            padding: 0;
+            list-style: none;
+        }
+        .predicted-tags ul li {
+            background-color: #e0f7fa;
+            color: #00796b;
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .ads {
+            text-align: center;
+        }
+        .ads .ad {
+            margin-bottom: 20px;
+        }
+        .ads img {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .ads .ad-title {
+            font-size: 14px;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .user-info, .predicted-tags, .ads {
+                margin: 10px 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="user-info">
+            <h2>User Information</h2>
+            <p><strong>Date of Birth:</strong> {{ response.data.dob }}</p>
+            <p><strong>Gender:</strong> {{ response.data.gender }}</p>
+            <p><strong>Location:</strong> {{ response.data.location }}</p>
+            <p><strong>Payment Info:</strong> {{ response.data.payment_info }}</p>
+            <p><strong>Usage Frequency:</strong> {{ response.data.usage_frequency }}</p>
+            <p><strong>Purchase History:</strong> {{ response.data.purchase_history }}</p>
+            <p><strong>Favorite Genre:</strong> {{ response.data.favorite_genre }}</p>
+            <p><strong>Device Used:</strong> {{ response.data.device_used }}</p>
+            <p><strong>Engagement Metrics:</strong> {{ response.data.engagement_metrics }}</p>
+        </div>
+
+        <div class="predicted-tags">
+            <h2>Predicted Tags</h2>
+            <ul>
+                {% for tag in response.predicted_tags.0 %}
+                <li>{{ tag }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="ads">
+            <h2>Top Ads</h2>
+            {% for ad in response.top_ads %}
+            <div class="ad">
+                <img src="{{ ad.AdLink }}" alt="{{ ad.AdTitle }}">
+                <div class="ad-title">
+                    <p><strong>{{ ad.AdTitle }}</strong></p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
