@@ -15,7 +15,7 @@ mlb = joblib.load("mlb.pkl")
 preprocessor = joblib.load("preprocessor.pkl")
 
 # Load your ad data (assuming it's in a CSV or similar format)
-ad_data = pd.read_csv("EnrichedAdData.csv")  # Update with your actual path
+ad_data = pd.read_csv("Best_AdData.csv")  # Update with your actual path
 vectorizer = TfidfVectorizer(lowercase=False)
 ad_data["AdTagsString"] = ad_data["AdTags"].apply(lambda x: "".join(x))
 print("ad_data['AdTagsString']:", ad_data["AdTagsString"])
