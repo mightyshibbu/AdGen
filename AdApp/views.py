@@ -105,37 +105,6 @@ def signup_view(request):
         form = UserSignupForm()
     return render(request, "signup.html", {"form": form})
 
-
-# def predict_tags(new_user_data):
-#     print("Inside predict tags!")
-
-#     # Define categorical columns
-#     categorical_columns = ['Age Group', 'Gender', 'Payment Information', 'Usage Frequency', 'Purchase History', 'Favorite Genres', 'Devices Used', 'Engagement Metrics']
-
-#     # Ensure the new user data is in the correct format
-#     try:
-#         # Ensure that new_user_data contains all required columns
-#         print("new_user_data columns:", new_user_data.columns)
-#         print("new_user_data[categorical_columns]:", new_user_data[categorical_columns])
-
-#         # Transform categorical data
-#         encoded_new_data = preprocessor.transform(new_user_data[categorical_columns])
-
-#         # Since there are no numerical columns, we can skip creating new_numerical_data
-#         new_features = encoded_new_data  # Use only the encoded categorical data
-#         print("new_features shape:", new_features.shape)
-#     except Exception as e:
-#         print("Error during preprocessing:", e)
-#         return []
-
-#     # Make predictions
-#     predictions = model.predict(new_features)
-
-#     # Decode the predicted tags
-#     predicted_tags = mlb.inverse_transform(predictions)
-#     return predicted_tags
-
-import torch
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
 
 # Load the fine-tuned GPT-2 model
